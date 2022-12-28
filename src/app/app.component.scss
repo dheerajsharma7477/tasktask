@@ -1,0 +1,218 @@
+body {
+    margin:0;
+    overflow:hidden;
+  }
+  
+  /* blue bar */
+  .anime {
+    height: 100%;
+    width: 100%;
+    background: #00000038;
+    z-index: 99;
+    position: absolute;
+    overflow: hidden;
+    top: 1px;
+  }
+  
+  /* text */
+  span,a {
+    color:#fff;
+    left:50%;
+    transform:translate(-50%,-50%);
+    position: absolute;
+    display: inline-block;
+    font-size:30px;
+    font-family:'open sans',sans-serif;
+    letter-spacing:-1px;
+    font-weight:bold;
+  }
+  span {
+    top:50%;
+  }
+  a {
+    color:#bbb;
+    font-size:11px;
+    bottom:20px;
+    font-weight:400;
+    text-transform:uppercase;
+    text-decoration:none;
+    letter-spacing:1px;
+  }
+  /* Shine */
+  .anime:after {
+      content:'';
+    top:0;
+      transform:translateX(100%);
+      width:100%;
+      height:100%;
+      position: absolute;
+      z-index:1;
+      animation: slide 3s infinite;
+       
+    /* 
+    CSS Gradient - complete browser support from http://www.colorzilla.com/gradient-editor/ 
+    */
+    background: -moz-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(128,186,232,0) 99%, rgba(125,185,232,0) 100%); /* FF3.6+ */
+      background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,0)), color-stop(50%,rgba(255,255,255,0.8)), color-stop(99%,rgba(128,186,232,0)), color-stop(100%,rgba(125,185,232,0))); /* Chrome,Safari4+ */
+      background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,0.8) 50%,rgba(128,186,232,0) 99%,rgba(125,185,232,0) 100%); /* Chrome10+,Safari5.1+ */
+      background: -o-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,0.8) 50%,rgba(128,186,232,0) 99%,rgba(125,185,232,0) 100%); /* Opera 11.10+ */
+      background: -ms-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,0.8) 50%,rgba(128,186,232,0) 99%,rgba(125,185,232,0) 100%); /* IE10+ */
+      background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,0.8) 50%,rgba(128,186,232,0) 99%,rgba(125,185,232,0) 100%); /* W3C */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#007db9e8',GradientType=1 ); /* IE6-9 */
+  }
+  
+  /* animation */
+  
+  @keyframes slide {
+      0% {transform:translateX(-100%);}
+      100% {transform:translateX(100%);}
+  }
+
+
+
+  .logiboc{
+    height: 522px;
+    width: 38%;
+    border-radius: 7px;
+    box-shadow: 1px 2px 4px grey;
+    margin: 8% 32%;
+    z-index: 9999;
+    position: absolute;
+  }
+  .head1{
+    font-weight: 400;
+    margin-left: 2px;
+    font-size: 17px;
+    padding-top: 10px;
+    margin: 13px 8px 0px 8px;
+    color: #fff;
+  }
+
+  .head4{
+    background: #fff;
+    padding: 7px;
+    color: #000;
+    font-weight: 400;
+    font-size: 14px;
+  }
+  .maindiv{
+    height: 200px;
+    color: #fff;
+  }
+
+  .pp{
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 59px 37px 0px 21px;
+    margin: 0px;
+  }
+
+  .upi{
+    text-align: center;
+    margin: 0px;
+    letter-spacing: 10px;
+    font-weight: 300;
+}
+
+.numbers{
+  // background: #f2f2f2;
+  height: 39%;
+  padding-top: 5px;
+}
+
+.digit{
+    width: 32.6%;
+    height: 25%;
+    text-align: center;
+    font-size: 27px;
+    color: #fff;
+    float: left;
+    cursor: pointer;
+}
+
+.tick{
+    background: #340562;
+    color: white;
+    border-radius: 34px;
+    width: 50px;
+    line-height: 47px;
+    margin-left: 29px;
+}
+
+.ripple {
+  background-position: center;
+  transition: background 1s;
+}
+.ripple:hover {
+  background: rgba(229, 149, 63, 0) radial-gradient(circle, transparent 1%, #ffffff85 1%) center/15000%;
+}
+.ripple:active {
+  background-color: rgba(255, 255, 255, 0);
+  background-size: 100%;
+  transition: background 0s;
+}
+
+* {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+
+  /*
+    Introduced in Internet Explorer 10.
+    See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+  */
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+
+
+
+.bg {
+  animation:slide 3s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, #6c3 50%, #09f 50%);
+  bottom:0;
+  left:-50%;
+  opacity:.5;
+  position:fixed;
+  right:-50%;
+  top:0;
+  z-index:-1;
+}
+
+.bg2 {
+  animation-direction:alternate-reverse;
+  animation-duration:4s;
+}
+
+.bg3 {
+  animation-duration:5s;
+}
+
+.content {
+  background-color:rgba(255,255,255,.8);
+  border-radius:.25em;
+  box-shadow:0 0 .25em rgba(0,0,0,.25);
+  box-sizing:border-box;
+  left:50%;
+  padding:10vmin;
+  position:fixed;
+  text-align:center;
+  top:50%;
+  transform:translate(-50%, -50%);
+}
+
+h1 {
+  font-family:monospace;
+}
+
+@keyframes slide {
+  0% {
+    transform:translateX(-25%);
+  }
+  100% {
+    transform:translateX(25%);
+  }
+}

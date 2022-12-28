@@ -1,0 +1,246 @@
+.main{
+    padding-top: 57px;
+    height: 85%;
+    display: flex;
+    overflow: hidden;
+    padding-bottom: 25px;
+    // overflow-y: scroll;
+}
+.section1{
+    height: 100%;
+    // border-right: 1px solid gray;
+    width: 24%;
+    margin-top: 3px;
+    padding-left: 20px;
+    // overflow-y: scroll;
+}
+.bottom-main{
+    height: 300px;
+}
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  
+  .mat-list{
+    width: 90%;
+    border-radius: 6px;
+  }
+  .mat-list-item{
+    box-shadow: 1px 2px 2px grey;
+    margin-bottom: 2px;
+    border-radius: 6px;
+    height: 60px !important;
+    border: 1px solid gray;
+  }
+  .mat-list-item-content{
+    display: block !important;
+    padding-top: 5px !important;
+  }
+  .datet{
+    font-size: 12px;
+    color: black;
+  }
+  .mat-list-base .mat-list-item{
+    margin-bottom: 10px;
+  }
+  .fnsiz{
+    font-size: 12px;
+  }
+  // .prod{
+  //   background-color: #c4ffc4;
+  // }
+  .prod{
+    background-color: #599159;
+    color: white !important;
+  }
+  // .QA{
+  //   background-color: #b6acff;
+  // }
+  .QA{
+    background-color: #7e71e0;
+    color: white !important;
+  }
+  .WILLGOPRODONQA{
+    background: linear-gradient(49deg, #9043e4 30%, #fea500 30%);
+    color: white !important;
+  }
+  .WILLGOPROD{
+    background-color: #f9a100;
+    color: white !important;
+  }
+  .hold{
+    background-color: #818181;
+    color: white !important;
+  }
+  .distext{
+    display: flex;
+  }
+  .dnametxt{
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+  }
+  .taskdis{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: "----";
+  }
+
+
+
+
+  .example-box {
+    width: 400px;
+    height: 200px;
+    border: solid 1px #ccc;
+    color: rgba(0, 0, 0, 0.87);
+    cursor: move;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #fff;
+    border-radius: 4px;
+    position: absolute;
+    // overflow-y: scroll;
+    z-index: 1;
+    transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+                0 2px 2px 0 rgba(0, 0, 0, 0.14),
+                0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  }
+  
+  .example-box:active {
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+                0 8px 10px 1px rgba(0, 0, 0, 0.14),
+                0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  }
+  .tasklst{
+    height: 30px !important;
+  }
+ 
+/* width */
+::-webkit-scrollbar {
+  width: 2px;
+  // display:none
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(255, 136, 0); 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: gray; 
+}
+
+.tasklstbox {
+  width: 99%;
+    height: 185px;
+    overflow-y: scroll;
+}
+.taskactin{
+  position: absolute;
+  bottom: 8px;
+  right: 30px;
+}
+.example-flex-container{
+  display: flex;
+}
+
+.listscrl{
+  height: 79%;
+  overflow-y: scroll;
+}
+
+.back-to-top {
+  position: absolute;
+    bottom: 55px;
+    right: 46%;
+    box-shadow: -1px 3px 12px;
+    /* padding: 10px 13px; */
+    border-radius: 116px;
+    display: none;
+    z-index: 9999;
+    padding: 2%;
+    font-size: 16px;
+}
+
+.copttody{
+  font-size: 12px;
+  margin-left: 5px;
+  cursor: pointer;;
+}
+.copttody:active{
+  color: #599159;
+}
+
+
+
+.mat-progress-bar{
+    position: absolute !important;
+    left: 1px;
+    bottom: -1px;
+    border-radius: 0 0 5px 5px;
+}
+
+.mat-progress-bar.mat-green .mat-progress-bar-fill::after {
+  background-color: #3a7a2a !important;
+}
+.mat-progress-bar.mat-green .mat-progress-bar-buffer {
+  background-color: rgb(216, 216, 216) !important;
+}
+
+.mat-progress-bar.mat-100 .mat-progress-bar-fill::after {
+  background-color: #3a7a2a !important;
+}
+.mat-progress-bar.mat-100 .mat-progress-bar-buffer {
+  background-color: rgb(216, 216, 216) !important;
+}
+
+.mat-progress-bar.mat-yellow .mat-progress-bar-fill::after {
+  background-color: #fe7d45 !important;
+}
+.mat-progress-bar.mat-yellow .mat-progress-bar-buffer {
+  background-color: rgb(216, 216, 216) !important;
+}
+
+.mat-progress-bar.mat-red .mat-progress-bar-fill::after {
+  background-color: red !important;
+}
+.mat-progress-bar.mat-red .mat-progress-bar-buffer {
+  background-color: rgb(216, 216, 216) !important;
+}
+
+
+.activeBranch{
+  color: white;
+  font-weight: 700;
+  text-shadow: 0px 0px 4px #000000;
+  animation: blink 1s linear infinite;
+}
+@keyframes blink{
+0%{opacity: 0;}
+50%{opacity: .5;}
+100%{opacity: 1;}
+}
+
+.redb{
+  color: red !important;
+}

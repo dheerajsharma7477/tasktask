@@ -1,0 +1,394 @@
+    <!-- ---------------------------------------------------------------- -->
+    <!--                                                                  -->
+    <!--                          Copy div                                -->
+    <!--                                                                  -->
+    <!------------------------------------------------------------------- -->
+<div *ngIf="this.copyTaskArray.length" [cdkDragFreeDragPosition]="dragPosition" class="example-box" cdkDrag>
+    <div class="tasklstbox">
+        <mat-list style="width: 97%" role="list">
+            <mat-list-item matTooltip="{{list.taskDiscription}}" *ngFor="let list of this.copyTaskArray;let i=index" class="tasklst" role="listitem">
+                {{list.taskDiscription}}
+                <!-- <mat-icon style="position: absolute;right: 10px ;" >highlight_off</mat-icon>  -->
+            </mat-list-item>
+            
+        </mat-list>
+    </div>
+    <div class="taskactin">
+        <div class="example-button-row">
+          <div class="example-flex-container">
+            <div class="example-button-container">
+              <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
+                <mat-icon (click)="cancleCopy()">highlight_off</mat-icon>
+              </button>
+            </div>
+            <div style="margin-left:10px" class="example-button-container">
+              <button mat-mini-fab color="accent" aria-label="Example icon button with a plus one icon">
+                <mat-icon (click)="copyText()">file_copy</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+<div class="main">
+    <!-- ---------------------------------------------------------------- -->
+    <!--                                                                  -->
+    <!--                               IN PROGRESS                        -->
+    <!--                                                                  -->
+    <!------------------------------------------------------------------- -->
+
+    <div class="section1" >
+        <!-- <button mat-raised-button color="primary" (click)="addTask()" >Add</button> -->
+        <div style="display: flex;">
+            <h3 style="width: 146px" ><mat-icon matBadge="{{firestorecollectionService.listlength}}" matBadgeOverlap="false" >schedule</mat-icon> In Progress</h3>
+            <button style="height: 38px;margin-top: 15px;background: orange;" mat-raised-button color="primary" (click)="reAssignInProgressTask()"><mat-icon> wb_sunny</mat-icon> good morning</button>
+        </div>
+        <mat-list role="list">
+            <mat-list-item  role="listitem">
+                <div class="distext">
+                    <div  style="height: 50px;" class="dnametxt">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Choose Status</mat-label>
+                            <select matNativeControl (change)="filter($event.target.value)">
+                              <option  *ngFor="let sts of status" >{{sts}}</option>
+                            </select>
+                          </mat-form-field>
+                    </div>
+                    <div>
+                        <button  (click)="addnewTask()" mat-icon-button aria-label="Example icon-button with a menu">
+                            <mat-icon>library_add</mat-icon>
+                          </button>
+                    </div>
+                </div>
+            </mat-list-item>
+        </mat-list>
+        <div id="listscrol" class="listscrl">
+            <mat-list role="list">
+            <ng-container *ngFor="let listdata of this.firestorecollectionService.taskList;let i=index"  >
+                <ng-container *ngFor="let list of listdata?.task | searchPipe : { taskDiscription: searchModel,branch: searchModel,designType: searchModel};let ind=index" >
+                    <ng-container *ngIf="list.name==this.object.userInfo.name">
+                        <h5 *ngIf="ind=='0'">{{listdata?.date}}<mat-icon (click)="copytodayTask(listdata)" class="copttody" >file_copy</mat-icon></h5>
+                        <mat-list-item  *ngIf="list.status==selectedStatus || selectedStatus=='ALL'" [ngClass]="list?.status" role="listitem">
+                            <div class="distext">
+                                <div (click)="viewTask(list)" class="dnametxt">
+                                    <span matTooltip="{{list.taskDiscription}}" class="taskdis">
+                                        <mat-icon class="fnsiz">check_circle</mat-icon> {{list.taskDiscription}}
+                                    </span> <br>
+                                    <span [ngClass]="searchModel==list.branch ? 'activeBranch':''" class="datet">
+                                        <mat-icon class="fnsiz">timeline</mat-icon>  {{list.branch}}
+                                    </span>
+                                </div>
+                                <div>
+                                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                        <mat-icon>more_vert</mat-icon>
+                                    </button>
+                                    <mat-menu #menu="matMenu">
+                                        <button *ngFor="let menu of menuList" (click)="menuClick(list,listdata,menu?.param)" [ngStyle]="{'background-color': menu?.color ? '#'+menu?.color : menu?.color }" mat-menu-item>
+                                            <mat-icon>{{menu?.icon}}</mat-icon>
+                                            <span>{{menu?.name}}</span>
+                                        </button>
+                                    </mat-menu>
+                                </div>
+                            </div>
+                            <mat-progress-bar *ngIf="list?.status=='inProgress'" [color]="list?.status=='inProgress' ? (list.progress < 50 ? 'red' : list.progress < 80 ? 'yellow':'green' ) : '100'" mode="determinate" value="{{list?.status=='inProgress' ? list.progress : '100'}}"></mat-progress-bar>
+                        </mat-list-item>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+            <mat-list-item *ngIf="!this.firestorecollectionService.taskList.length"  role="listitem">
+                <div class="distext">
+                    <div class="dnametxt">
+                        <span class="taskdis">
+                            <mat-icon class="fnsiz">check_circle</mat-icon> No Task Found
+                        </span> <br>
+                        <span class="datet">
+                            <!-- <mat-icon class="fnsiz">timeline</mat-icon> -->
+                        </span>
+                    </div>
+                </div>
+            </mat-list-item>
+            </mat-list>
+            <a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button">
+                <i class="fa fa-arrow-up"></i>
+            </a>
+        </div>
+        
+    </div>
+
+    <!-- ---------------------------------------------------------------- -->
+    <!--                                                                  -->
+    <!--                               QA                                 -->
+    <!--                                                                  -->
+    <!------------------------------------------------------------------- -->
+
+    <div class="section1">
+        <h3 ><mat-icon matBadge="{{this.firestorecollectionService.qaLength}}" matBadgeOverlap="false" >rowing</mat-icon>  QA</h3>
+        <mat-list role="list">
+            <mat-list-item  role="listitem">
+                <div class="distext">
+                    <div style="height: 50px;" class="dnametxt">
+                        <mat-form-field class="example-full-width">
+                        <mat-label>Search Task</mat-label>
+                        <input [(ngModel)]="searchModel" matInput placeholder="Search" value="">
+                        <button *ngIf="searchModel" matSuffix mat-icon-button aria-label="Clear" (click)="searchModel=''">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </mat-list-item>
+        </mat-list>
+        <div id="listscrol2" class="listscrl">
+            <mat-list role="list">
+                <ng-container *ngFor="let listdata of this.firestorecollectionService.QA"  >
+                    <ng-container *ngFor="let list of listdata?.task | searchPipe : { taskDiscription: searchModel,branch: searchModel,designType: searchModel};let ind=index">
+                        <ng-container *ngIf="list.name==this.object.userInfo.name">
+                            <h5 *ngIf="ind=='0'">{{listdata?.date}}</h5>
+                            <mat-list-item  [ngClass]="list?.status" role="listitem">
+                                <div class="distext">
+                                    <div  (click)="viewTask(list)" class="dnametxt">
+                                        <span matTooltip="{{list.taskDiscription}}" class="taskdis">
+                                            <mat-icon class="fnsiz">check_circle</mat-icon> {{list.taskDiscription}}
+                                        </span> <br>
+                                        <span [ngClass]="searchModel==list.branch ? 'activeBranch':''" class="datet">
+                                            <mat-icon class="fnsiz">timeline</mat-icon>  {{list.branch}}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        
+                                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                            <mat-icon>more_vert</mat-icon>
+                                          </button>
+                                        <mat-menu #menu="matMenu">
+                                            <button (click)="copytask(list)" style="background-color: #fff;" mat-menu-item>
+                                                <mat-icon>file_copy</mat-icon>
+                                                <span>Copy</span>
+                                            </button>
+                                            <button (click)="updateStatus(list,listdata,'inProgress')" style="background-color: #fff;" mat-menu-item>
+                                                <mat-icon>schedule</mat-icon>
+                                                <span>In progress</span>
+                                            </button>
+                                            <button  (click)="updateStatus(list,listdata,'WILLGOPRODONQA')" style="background-color: #e5ffe5;" mat-menu-item>
+                                                <mat-icon>done</mat-icon>
+                                                <span>Will go on Prod On QA</span>
+                                            </button>
+                                            <button  (click)="updateStatus(list,listdata,'WILLGOPROD')" style="background-color: #e5ffe5;" mat-menu-item>
+                                                <mat-icon>done</mat-icon>
+                                                <span>Will go on Prod</span>
+                                            </button>
+                                            <button  (click)="updateStatus(list,listdata,'prod')" style="background-color: #e5ffe5;" mat-menu-item>
+                                              <mat-icon>done_all</mat-icon>
+                                              <span>On Prod</span>
+                                            </button>
+                                            <button (click)="handleRemoveTask(list,listdata)" style="background-color: #f4bebe;" mat-menu-item>
+                                                <mat-icon>remove_circle_outline</mat-icon>
+                                                <span>remove</span>
+                                            </button>
+                                            <button (click)="openUpdateModel(list,listdata)" style="background-color: #d4d4d4;" mat-menu-item>
+                                                <mat-icon>update</mat-icon>
+                                                <span>Update</span>
+                                            </button>
+                                          </mat-menu>
+                                    </div>
+                                </div>
+                            </mat-list-item>
+                        </ng-container>
+                    </ng-container>
+                </ng-container>
+            </mat-list>
+            <a id="back-to-top2" href="#" class="btn btn-light btn-lg back-to-top" role="button">
+                <i class="fa fa-arrow-up"></i>
+            </a>
+        </div>
+    </div>
+    <!-- ---------------------------------------------------------------- -->
+    <!--                                                                  -->
+    <!--                               WILLGOPROD                         -->
+    <!--                                                                  -->
+    <!------------------------------------------------------------------- -->
+
+    <div class="section1">
+        <h3><mat-icon matBadge="{{this.firestorecollectionService.willprodLength}}" matBadgeOverlap="false" >done_all</mat-icon>will Go on prod</h3>
+        <mat-list role="list">
+            <mat-list-item  role="listitem">
+                <div class="distext">
+                    <div style="height: 50px;" class="dnametxt">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Choose Branch</mat-label>
+                            <select matNativeControl (change)="checkBranchStatus();this.searchModel=$event.target.value">
+                              <option [ngClass]="list?.status=='inProgress'?'redb':'greenb'" selected="{{list=='inProgress' ? 'selected':''}}" *ngFor="let list of this.object.branchList" >{{list?.branch}}</option>
+                            </select>
+                          </mat-form-field>
+                    </div>
+                    <div>
+                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                            <mat-icon (click)="checkBranchStatus()" >settings</mat-icon>
+                          </button>
+                        <mat-menu #menu="matMenu">
+                            <ng-container *ngFor="let list of this.object.branchList;let i=index">
+                                <mat-card *ngIf="i!=0" >
+                                    <mat-card-content style="display: flex;">
+                                        <mat-icon style="color: red;cursor: pointer;" (click)="handleRemoveBranch(i)"  >delete</mat-icon>
+                                        <span [ngClass]="list?.status=='inProgress'?'redb':'greenb'" style="padding: 5px;">{{list?.branch}}</span>
+                                        <mat-icon style="font-size: 18px;margin-left: 14px;cursor: pointer;" (click)="copyBranch(list?.branch)">file_copy</mat-icon> 
+                                    </mat-card-content>
+                                </mat-card>
+                                <!-- <button *ngIf="i!=0" (click)="handleRemoveBranch(i)"  style="background-color: rgb(239, 181, 181);" mat-menu-item>
+                                  <mat-icon>delete</mat-icon>
+                                  <span>{{branch}}</span>
+                                </button> -->
+                            </ng-container>
+                        </mat-menu>
+                    </div>
+                </div>
+            </mat-list-item>
+        </mat-list>
+        <div id="listscrol3" class="listscrl">
+            <mat-list role="list">
+                <ng-container *ngFor="let listdata of this.firestorecollectionService.willgoProd"  >
+                    <ng-container *ngFor="let list of listdata?.task | searchPipe : { taskDiscription: searchModel,branch: searchModel,designType: searchModel};let ind=index">
+                        <ng-container *ngIf="list.name==this.object.userInfo.name">
+                            <h5 *ngIf="ind=='0'">{{listdata?.date}}</h5>
+                            <mat-list-item [ngClass]="list?.status" role="listitem">
+                                <div class="distext">
+                                    <div  (click)="viewTask(list)" class="dnametxt">
+                                        <span matTooltip="{{list.taskDiscription}}" class="taskdis">
+                                            <mat-icon class="fnsiz">check_circle</mat-icon> {{list.taskDiscription}}
+                                        </span> <br>
+                                        <span [ngClass]="searchModel==list.branch ? 'activeBranch':''" class="datet">
+                                            <mat-icon class="fnsiz">timeline</mat-icon> {{list.branch}}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                            <mat-icon>more_vert</mat-icon>
+                                          </button>
+                                        <mat-menu #menu="matMenu">
+                                            <button (click)="copytask(list)" style="background-color: #fff;" mat-menu-item>
+                                                <mat-icon>file_copy</mat-icon>
+                                                <span>Copy</span>
+                                            </button>
+                                            <button (click)="updateStatus(list,listdata,'inProgress')" style="background-color: #fff;" mat-menu-item>
+                                                <mat-icon>schedule</mat-icon>
+                                                <span>In progress</span>
+                                              </button>
+                                            <button (click)="updateStatus(list,listdata,'QA')"  style="background-color: #ebe0ff;" mat-menu-item>
+                                              <mat-icon>rowing</mat-icon>
+                                              <span>On QA</span>
+                                            </button>
+                                            <button  (click)="updateStatus(list,listdata,'WILLGOPRODONQA')" style="background-color: #e5ffe5;" mat-menu-item>
+                                                <mat-icon>done</mat-icon>
+                                                <span>Will go on Prod On QA</span>
+                                            </button>
+                                            <button  (click)="updateStatus(list,listdata,'WILLGOPROD')" style="background-color: #e5ffe5;" mat-menu-item>
+                                                <mat-icon>done</mat-icon>
+                                                <span>Will go on Prod</span>
+                                            </button>
+                                            <button  (click)="updateStatus(list,listdata,'prod')" style="background-color: #e5ffe5;" mat-menu-item>
+                                                <mat-icon>done_all</mat-icon>
+                                                <span>On Prod</span>
+                                              </button>
+                                            <button  (click)="handleRemoveTask(list,listdata)" style="background-color: #f4bebe;" mat-menu-item>
+                                                <mat-icon>remove_circle_outline</mat-icon>
+                                                <span>remove</span>
+                                            </button>
+                                            <button (click)="openUpdateModel(list,listdata)" style="background-color: #d4d4d4;" mat-menu-item>
+                                                <mat-icon>update</mat-icon>
+                                                <span>Update</span>
+                                            </button>
+                                          </mat-menu>
+                                    </div>
+                                </div>
+                            </mat-list-item>
+                        </ng-container>
+                    </ng-container>
+                </ng-container>
+            </mat-list>
+            <a id="back-to-top3" href="#" class="btn btn-light btn-lg back-to-top" role="button">
+                <i class="fa fa-arrow-up"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- ---------------------------------------------------------------- -->
+    <!--                                                                  -->
+    <!--                               Prod                               -->
+    <!--                                                                  -->
+    <!------------------------------------------------------------------- -->
+
+    <div class="section1">
+        <h3><mat-icon matBadge="{{this.firestorecollectionService.prodLength}}" matBadgeOverlap="false" >done_all</mat-icon>  Prod</h3>
+        <mat-list role="list">
+            <mat-list-item  role="listitem">
+                <div class="distext">
+                    <div style="height: 50px;" class="dnametxt">
+                        <mat-form-field class="example-full-width">
+                        <mat-label>Search</mat-label>
+                        <input [(ngModel)]="searchModel" matInput placeholder="Search" value="">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </mat-list-item>
+        </mat-list>
+        <div id="listscrol4" class="listscrl">
+            <mat-list role="list">
+                <ng-container *ngFor="let listdata of this.firestorecollectionService.prod"  >
+                    <ng-container *ngFor="let list of listdata?.task | searchPipe : { taskDiscription: searchModel,branch: searchModel,designType: searchModel};let ind=index">
+                        <ng-container *ngIf="list.name==this.object.userInfo.name">
+                            <h5 *ngIf="ind=='0'">{{listdata?.date}}</h5>
+
+                            <mat-list-item [ngClass]="list?.status" role="listitem">
+                                <div class="distext">
+                                    <div  (click)="viewTask(list)" class="dnametxt">
+                                        <span matTooltip="{{list.taskDiscription}}" class="taskdis">
+                                            <mat-icon class="fnsiz">check_circle</mat-icon> {{list.taskDiscription}}
+                                        </span> <br>
+                                        <span [ngClass]="searchModel==list.branch ? 'activeBranch':''" class="datet">
+                                            <mat-icon class="fnsiz">timeline</mat-icon> {{list.branch}}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                            <mat-icon>more_vert</mat-icon>
+                                          </button>
+                                        <mat-menu #menu="matMenu">
+                                            
+                                            <button (click)="updateStatus(list,listdata,'inProgress')" style="background-color: #fff;" mat-menu-item>
+                                                <mat-icon>schedule</mat-icon>
+                                                <span>In progress</span>
+                                            </button>
+                                            <button (click)="updateStatus(list,listdata,'QA')"  style="background-color: #ebe0ff;" mat-menu-item>
+                                              <mat-icon>rowing</mat-icon>
+                                              <span>On QA</span>
+                                            </button>
+                                            <button  (click)="updateStatus(list,listdata,'WILLGOPRODONQA')" style="background-color: #e5ffe5;" mat-menu-item>
+                                                <mat-icon>done</mat-icon>
+                                                <span>Will go on Prod On QA</span>
+                                            </button>
+                                            <button  (click)="updateStatus(list,listdata,'WILLGOPROD')" style="background-color: #e5ffe5;" mat-menu-item>
+                                                <mat-icon>done</mat-icon>
+                                                <span>Will go on Prod</span>
+                                            </button>
+                                            <button  (click)="handleRemoveTask(list,listdata)" style="background-color: #f4bebe;" mat-menu-item>
+                                                <mat-icon>remove_circle_outline</mat-icon>
+                                                <span>remove</span>
+                                            </button>
+                                            <button (click)="openUpdateModel(list,listdata)" style="background-color: #d4d4d4;" mat-menu-item>
+                                                <mat-icon>update</mat-icon>
+                                                <span>Update</span>
+                                            </button>
+                                          </mat-menu>
+                                    </div>
+                                </div>
+                            </mat-list-item>
+                        </ng-container>
+                    </ng-container>
+                </ng-container>
+            </mat-list>
+            <a id="back-to-top4" href="#" class="btn btn-light btn-lg back-to-top" role="button">
+                <i class="fa fa-arrow-up"></i>
+            </a>
+        </div>
+    </div>
+</div>
+

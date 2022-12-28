@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -61,7 +62,265 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "flipkartOrange": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "assets": [
+                "src/favicon.ico",
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/whitelable-css/flipkartOrange/assets",
+                  "output": "/assets/"
+                }
+              ],
+              "styles": [
+                "src/styles.scss",
+                "src/whitelable-css/flipkartOrange/assets/css/orange.css"
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            },
+            "flipkartBlack": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "assets": [
+                "src/favicon.ico",
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/whitelable-css/flipkartBlack/assets",
+                  "output": "/assets/"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            },
+            "amazonDefault": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "assets": [
+                "src/favicon.ico",
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/whitelable-css/flipkartBlack/assets",
+                  "output": "/assets/"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            },
+            "tasktask": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "assets": [
+                "src/favicon.ico",
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/whitelable-css/flipkartBlack/assets",
+                  "output": "/assets/"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
             }
+          }
+        },
+        "flipkartOrangeServe":{
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/firebase",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "src/whitelable-css/flipkartOrange/assets",
+                "output": "/assets/"
+              }
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.scss",
+              "src/whitelable-css/flipkartOrange/assets/css/orange.css"
+            ],
+            "scripts": []
+          }
+        },
+        "flipkartBlackServe":{
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/firebase",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "src/whitelable-css/flipkartOrange/assets",
+                "output": "/assets/"
+              }
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.scss",
+              "src/whitelable-css/flipkartBlack/assets/css/black.css"
+            ],
+            "scripts": []
+          }
+        },
+        "amazonDefaultServe":{
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/firebase",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "src/whitelable-css/flipkartOrange/assets",
+                "output": "/assets/"
+              }
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "tasktaskServe":{
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/firebase",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "src/whitelable-css/flipkartOrange/assets",
+                "output": "/assets/"
+              }
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.scss"
+            ],
+            "scripts": []
           }
         },
         "serve": {
@@ -71,7 +330,25 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "firebase:build:production"
+              "browserTarget": "firebase:build:production",
+              "port":4200
+              
+            },
+            "flipkartOrange": {
+              "browserTarget": "firebase:flipkartOrangeServe",
+              "port":4200
+            },
+            "flipkartBlack": {
+              "browserTarget": "firebase:flipkartBlackServe",
+              "port":4200
+            },
+            "amazonDefault": {
+              "browserTarget": "firebase:amazonDefaultServe",
+              "port":4300
+            },
+            "tasktask": {
+              "browserTarget": "firebase:tasktaskServe",
+              "port":4400
             }
           }
         },
@@ -93,6 +370,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -124,6 +402,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "firebase"
 }

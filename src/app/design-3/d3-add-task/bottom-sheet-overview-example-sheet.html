@@ -1,0 +1,40 @@
+<div class="bottom-main">
+  <div>
+    <h1>Add Task</h1>
+  </div>
+  <!-- <form class="example-form"> -->
+    <mat-form-field class="example-full-width">
+      <mat-label>Task discription</mat-label>
+      <input [(ngModel)]="this.service.taskDiscription" matInput placeholder="task discription" value="">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Branch</mat-label>
+      <input [(ngModel)]="this.service.branch" matInput placeholder="Branch nmae" [matAutocomplete]="auto" value="">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <ng-container *ngFor="let list of filteredOptions | async;let i=index">
+          <mat-option *ngIf="i!=0" [value]="list.branch">
+            {{list?.branch}}
+          </mat-option>
+        </ng-container>
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>progress in %</mat-label>
+      <input type="number" [(ngModel)]="this.service.progress" matInput placeholder="progress" value="">
+    </mat-form-field>
+    <mat-form-field appearance="fill" style="width: 100%">
+      <mat-label>Choose an Design</mat-label>
+      <mat-select [(value)]="this.service.designType" >
+        <mat-option [value]="design.alias" *ngFor="let design of this.service.design" >{{design.alias}}>{{design.dname}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <section style="float: right">
+      <div  *ngIf="!this.object.listforUpdate.length" class="example-button-row">
+        <button mat-raised-button color="primary" (click)="addTaskData()">Submit</button>
+      </div>
+      <div  *ngIf="this.object.listforUpdate.length" class="example-button-row">
+        <button mat-raised-button color="primary" (click)="updateTaskData()">Update</button>
+      </div>
+    </section>
+  <!-- </form> -->
+</div>

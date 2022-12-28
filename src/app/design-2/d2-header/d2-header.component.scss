@@ -1,0 +1,46 @@
+.header{
+    height: 70px;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    background-color: #131921;
+}
+.logo{
+    padding: 21px;
+    width: 10%;
+    margin-left: 8px;
+    float: left;
+}
+.logonext{
+    color: white;
+    width: 15%;
+    float: left;
+    padding: 19px;
+    display: grid;
+}
+.inputsearch{
+    width: 50%;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+}
+.inputbox{
+    width: 515px;
+    height: 42px;
+    border: none;
+    margin-top: 13px;
+    border-radius: 5px;
+}
+.inputbtn{
+    width: 45px;
+    height: 44px;
+    position: absolute;
+    top: 13px;
+    margin-left: 2px;
+    border: none;
+    border-radius: 5px;
+    background-color: yellow;
+}
+.row{
+    display: flex;
+}

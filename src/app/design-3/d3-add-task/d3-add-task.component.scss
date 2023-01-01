@@ -16,6 +16,7 @@
 }
 .bottom-main{
     height: 300px;
+    margin-bottom: 150px;
 }
 .example-form {
     min-width: 150px;
@@ -43,6 +44,10 @@
     padding-top: 5px !important;
   }
   .datet{
+    font-size: 12px;
+    color: white;
+  }
+  .datetip{
     font-size: 12px;
     color: black;
   }
@@ -98,8 +103,8 @@
 
 
   .example-box {
-    width: 400px;
-    height: 200px;
+    width: 50%;
+    height: 67%;
     border: solid 1px #ccc;
     color: rgba(0, 0, 0, 0.87);
     cursor: move;
@@ -111,7 +116,7 @@
     border-radius: 4px;
     position: absolute;
     // overflow-y: scroll;
-    z-index: 1;
+    z-index: 99;
     transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
     box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
                 0 2px 2px 0 rgba(0, 0, 0, 0.14),
@@ -152,7 +157,7 @@
 
 .tasklstbox {
   width: 99%;
-    height: 185px;
+    height: 100%;
     overflow-y: scroll;
 }
 .taskactin{
@@ -243,4 +248,179 @@
 
 .redb{
   color: red !important;
+}
+
+
+/////////////sticky notes///////////////
+@import url('https://fonts.googleapis.com/css2?family=Kalam&display=swap');
+
+/* Some positioning and ratios */
+.sticky-container {
+  max-width: 270px;
+  position: relative;
+}
+
+.sticky-outer {
+  display: flex;
+  padding-top: 92.5925926%;
+  position: relative;
+
+  width: 100%;
+}
+
+.sticky {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* Shadow behind the sticky note */
+.sticky:before {
+  box-shadow: -2px 2px 15px 0 rgb(0 0 0 / 50%);
+    background-color: rgba(0, 0, 0, 0.25);
+    content: "";
+    width: 105%;
+    left: 5px;
+    height: 87%;
+    position: absolute;
+    top: 30%;
+}
+
+/* The sticky note itself */
+.sticky-content {
+  background: #f1f180;
+  // background: linear-gradient(
+  //   180deg,
+  //   rgba(187, 235, 255, 1) 0%,
+  //   rgba(187, 235, 255, 1) 12%,
+  //   rgba(170, 220, 241, 1) 75%,
+  //   rgba(195, 229, 244, 1) 100%
+  // );
+  width: 100%;
+  height: 100%;
+
+  display: block;
+    justify-content: left;
+    align-items: baseline;
+  font-family: 'Kalam', cursive;
+  font-size: 1.25rem;
+
+  clip-path: url(#stickyClip);
+  padding: 19px;
+  overflow-y: scroll;
+}
+
+
+/* Position the sticky nicely, so it looks better */
+
+.container {
+  display: flex; 
+    position: absolute;
+    justify-content: center;
+    width: 33%;
+    float: left;
+    z-index: 9;
+    
+}
+.container-inner {
+  width: 50%;
+  margin: 25px;
+}
+
+/* Add responsiveness */
+@media screen and (min-width: 640px) {
+  .sticky-content {
+    font-size: 1.5rem;
+  }
+  .container-inner {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .sticky-content {
+    font-size: 15px;
+  }
+  .container-inner {
+    width: 60%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .sticky-content {
+    font-size: 15px;
+  }
+  .container-inner {
+    width: 60%;
+  }
+}
+
+
+.d-block{
+  display: block ;
+}
+.d-none{
+  display: none !important;
+}
+
+
+
+/////////////////select box/////////////
+.selectbox {
+  width: 30%;
+  min-width: 15ch;
+  max-width: 30ch;
+  border: none;
+  border-bottom: 1px solid gray;
+  padding: 0.25em 0.5em;
+  font-size: 1rem;
+  cursor: pointer;
+  line-height: 1.1;
+  background-color: #fff;
+}
+
+
+
+.dropsection{
+
+}
+
+.vert-move {
+  -webkit-animation: mover 1s infinite  alternate;
+  animation: mover 1s infinite  alternate;
+}
+.vert-move {
+  -webkit-animation: mover 1s infinite  alternate;
+  animation: mover 1s infinite  alternate;
+}
+@-webkit-keyframes mover {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-10px); }
+}
+@keyframes mover {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-10px); }
+}
+
+
+.removedrop{
+  // position: absolute;
+  bottom: 17px;
+  right: 43%;
+}
+
+.removebox{
+  border-radius: 104px;
+    height: 200px;
+    width: 200px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    background: #eba4a461;
+}
+
+.copyp{
+  margin: 0px;
 }

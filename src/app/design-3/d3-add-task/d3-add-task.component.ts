@@ -8,6 +8,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { FormControl } from '@angular/forms';
 import {map, startWith} from 'rxjs/operators';
 import { TaskModelComponent } from 'src/app/layout/model/task-model/task-model.component';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 @Component({
   selector: 'app-d3-add-task',
   templateUrl: './d3-add-task.component.html',
@@ -27,6 +28,9 @@ import { TaskModelComponent } from 'src/app/layout/model/task-model/task-model.c
 })
 export class D3AddTaskComponent extends AbstractAddTask implements OnInit {
 
+
+  
+
   public dialogStatus:any
   constructor(public _bottomSheet: MatBottomSheet, public service: MasterObjectService,public firestorecollectionService:FirestorecollectionService,public dialog: MatDialog) {
     super(service,firestorecollectionService,_bottomSheet)
@@ -41,8 +45,30 @@ export class D3AddTaskComponent extends AbstractAddTask implements OnInit {
 
     
   }
+
+ /**
+ * Funtion for grid drag drop
+ * @param e 
+ */
+  dragMoved(list,listdata) {
+    this.isdragStart=true
+    this.dragList = list
+    this.dragListdata = listdata
+
+  }
+  drop(event: CdkDragDrop<string[]>) {
+    let param:any = event.container.data
+    this.isdragStart=false
+    if(param =='remove'){
+      this.handleRemoveTask(this.dragList,this.dragListdata)
+      return
+    }
+
+    if(event.previousContainer.data==event.container.data){return}
+    this.updateStatus(this.dragList,this.dragListdata,param)
+  }
+
   menuClick(list,listdata,param){
-    console.log(param)
     if(param=='copyToday'){
       this.copytoToday(list)
     }
@@ -52,18 +78,22 @@ export class D3AddTaskComponent extends AbstractAddTask implements OnInit {
     else if(param=='remove'){
       this.handleRemoveTask(list,listdata)
     }
+    else if(param=='copyTask'){
+      this.copytask(list)
+    }
     else{
       this.updateStatus(list,listdata,param)
     }
   }
   viewTask(task){
+    return
     this.object.viewTask=task
     this.dialog.open(TaskModelComponent,{
       minWidth:'400px'
     });
   }
   getBranchs(){
-    this.firestorecollectionService.getBranch().doc(this.object.userName).valueChanges().subscribe((res:any)=>{
+    this.firestorecollectionService.getBranch().doc(this.object.userInfo.name).valueChanges().subscribe((res:any)=>{
       if(res){
         this.object.branchList=[]
         res.branchs.forEach(el=>{
@@ -72,6 +102,7 @@ export class D3AddTaskComponent extends AbstractAddTask implements OnInit {
         })
 
       }
+      this.object.branchList.unshift({branch:'',status:'active'})
     })
     // this.firestorecollectionService.taskList
   }
@@ -95,8 +126,10 @@ export class D3AddTaskComponent extends AbstractAddTask implements OnInit {
    * function to check first array in empty or have data to push or create new array
    */
   addnewTask(): void {
-    if(this.firestorecollectionService.taskListFromFireBase[0].date==new Date().toDateString()){
-      this.service.selectedTask=this.firestorecollectionService.taskListFromFireBase[0].task
+    if(this.firestorecollectionService.allTask.length){
+      if(this.firestorecollectionService.allTask[0].date==new Date().toDateString()){
+        this.service.selectedTask=this.firestorecollectionService.allTask[0].task
+      }
     }
     this._bottomSheet.open(BottomSheetOverviewExampleSheet);
   }
@@ -113,6 +146,7 @@ export class D3AddTaskComponent extends AbstractAddTask implements OnInit {
    */
   openUpdateModel(task,list){
     this.object.listforUpdate = list.task
+    
     this.object.taskDiscription=task.taskDiscription
     this.object.branch=task.branch
     this.object.designType=task.designType
@@ -270,6 +304,14 @@ export class BottomSheetOverviewExampleSheet extends AbstractAddTask{
     }, 200);
   }
 
+  public desn=[]
+  chooseDesign(event){
+    console.log(event)
+    if(!this.desn.includes(event)){
+      this.desn.push(event)
+    }
+    this.service.designType=this.desn.join(',')
+  }
     /**
    * Funtion is used for stop blinking effect when get more firebase event
    * @param index 

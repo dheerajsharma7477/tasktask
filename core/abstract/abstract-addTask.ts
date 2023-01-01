@@ -47,7 +47,6 @@ constructor(public object: MasterObjectService,public firestorecollectionService
   }
 
   addBranch(data:any){
-    console.log(this.object.branchList)
     let ind = this.object.branchList.findIndex(el=>el.branch==data.branch)
     if(ind==-1){
         let br=[]
@@ -55,7 +54,7 @@ constructor(public object: MasterObjectService,public firestorecollectionService
             br.push(el.branch)
         })
         br.push(data.branch)
-        this.firestorecollectionService.getBranch().doc(this.object.userName).set({
+        this.firestorecollectionService.getBranch().doc(this.object.userInfo.name).set({
             branchs : br
         })
     }
@@ -68,7 +67,6 @@ constructor(public object: MasterObjectService,public firestorecollectionService
  * @returns 
  */
 updateTaskdata(data,date){
-    console.log(data)
     if(!data.length){
         this.firestorecollectionService.addTask().doc(date).delete()
         return
@@ -226,6 +224,7 @@ removetask(task,list){
      * @param text 
      */
     copytodayTask(text){
+        text.task=text.task.filter(el=>el.name==this.object.userInfo.name)
         let cp=[]
         text.task.forEach(el=>{cp.push('-'+el.taskDiscription+' ('+el.branch+')')})
         text=JSON.stringify(cp)
@@ -271,7 +270,7 @@ removetask(task,list){
         this.object.branchList.forEach(el=>{  //convert array of object to array
             br.push(el.branch)
         })
-        this.firestorecollectionService.getBranch().doc(this.object.userName).set({
+        this.firestorecollectionService.getBranch().doc(this.object.userInfo.name).set({
             branchs : br
         })
         // this.updateTaskdata(this.object.listforUpdate,list.date)
@@ -279,7 +278,14 @@ removetask(task,list){
     }
     
 
-    checkBranchStatus(){
+    checkBranchStatus(search){
+        
+            this.searchModel=search ? search :''
+            this.isBranchSearch=true
+            if(this.searchModel==''){
+                this.isBranchSearch=false // prevent css
+            }
+
             this.object.branchList.forEach(el=>{ //reset value
                 el.status=''
             })

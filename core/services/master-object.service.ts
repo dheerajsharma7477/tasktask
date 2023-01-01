@@ -30,6 +30,10 @@ export class MasterObjectService {
   public design=[
     {
       dname:'Iceexchange',
+      alias:''
+    },
+    {
+      dname:'Iceexchange',
       alias:'D1'
     },
     {
@@ -55,6 +59,14 @@ export class MasterObjectService {
     {
       dname:'All',
       alias:'All'
+    },
+    {
+      dname:'PLAYER',
+      alias:'PLAYER'
+    },
+    {
+      dname:'ADMIN',
+      alias:'ADMIN'
     }
   ]
   public userInfo:any

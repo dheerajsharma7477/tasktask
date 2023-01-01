@@ -10,12 +10,16 @@ import { FirestorecollectionService } from 'src/app/firestorecollection.service'
   styleUrls: ['./task-model.component.scss']
 })
 export class TaskModelComponent extends AbstractAddTask implements OnInit {
-
+  public view:boolean
   constructor(public _bottomSheet: MatBottomSheet, public service: MasterObjectService,public firestorecollectionService:FirestorecollectionService,public dialog: MatDialog) {
     super(service,firestorecollectionService,_bottomSheet)
    }
 
   ngOnInit() {
+    setTimeout(() => {
+      this.object.viewTask.taskDiscription = this.object.viewTask.taskDiscription.split(',')
+      this.view=true
+    }, 100);
   }
 
 }

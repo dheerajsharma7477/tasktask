@@ -8,54 +8,80 @@ export class AbstractAddTaskDef{
     public searchModel:any
     public todayDate:any
     public branchstate:any
+    public isBranchSearch:boolean
+    public dragList:any
+    public dragListdata:any
+    public isdragStart:boolean
     public menuList=[
+        {
+            name:'Copy',
+            param:'copyTask',
+            color:'fff',
+            icon:'file_copy',
+            show:"QA,WILLGOPROD,prod"
+        },
+        {
+            name:'In progress',
+            param:'In progress',
+            color:'fff',
+            icon:'schedule',
+            show:"QA,WILLGOPROD,prod"
+        },
         {
             name:'On QA',
             param:'QA',
             color:'ebe0ff',
-            icon:'rowing'
+            icon:'rowing',
+            show:"IP,WILLGOPROD,prod"
         },
         {
             name:'Will go on Prod On QA',
             param:'WILLGOPRODONQA',
             color:'e5ffe5',
-            icon:'done'
+            icon:'done',
+            show:"QA,IP"
         },
         {
             name:'Will go on Prod',
             param:'WILLGOPROD',
             color:'e5ffe5',
-            icon:'done'
+            icon:'done',
+            show:"QA,IP"
         },
         {
             name:'On Prod',
             param:'prod',
             color:'e5ffe5',
-            icon:'done_all'
+            icon:'done_all',
+            show:"QA,IP,WILLGOPROD"
         },
         {
             name:'On Hold',
             param:'hold',
             color:'818181',
-            icon:'done_all'
+            icon:'done_all',
+            show:"QA,IP,WILLGOPROD,prod"
         },
         {
             name:'remove',
             param:'remove',
             color:'f4bebe',
-            icon:'remove_circle_outline'
+            icon:'remove_circle_outline',
+            show:"QA,IP,WILLGOPROD,prod"
         },
         {
             name:'Update',
             param:'Update',
             color:'d4d4d4',
-            icon:'update'
+            icon:'update',
+            show:"QA,IP,WILLGOPROD,prod"
         },
         {
             name:'Copy to today',
             param:'copyToday',
             color:'afafaf',
-            icon:'file_copy'
+            icon:'file_copy',
+            show:"IP"
         }
     ]
     constructor(){}

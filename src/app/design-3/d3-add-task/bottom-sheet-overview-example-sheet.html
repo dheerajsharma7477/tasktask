@@ -2,7 +2,6 @@
   <div>
     <h1>Add Task</h1>
   </div>
-  <!-- <form class="example-form"> -->
     <mat-form-field class="example-full-width">
       <mat-label>Task discription</mat-label>
       <input [(ngModel)]="this.service.taskDiscription" matInput placeholder="task discription" value="">
@@ -26,16 +25,11 @@
     <mat-label>Choose an Design</mat-label>
     <section  class="example-section">
       <div style="width: 600px;">
-        <mat-checkbox style="margin: 25px;" (click)="chooseDesign(design.alias)" *ngFor="let design of this.service.design" class="example-margin">{{design.alias}}</mat-checkbox>
+        <ng-container *ngFor="let design of this.service.design;let i=index">
+          <mat-checkbox *ngIf="i!=0" style="margin: 25px;"  [checked]="this.service.designType.includes(design.alias)" (change)="chooseDesign(design.alias,$event.checked)"  class="example-margin">{{design.alias}}</mat-checkbox>
+        </ng-container>
       </div>
     </section>
-
-    <!-- <mat-form-field appearance="fill" style="width: 100%">
-      <mat-label>Choose an Design</mat-label>
-      <mat-select [(value)]="this.service.designType" >
-        <mat-option [value]="design.alias" *ngFor="let design of this.service.design" >{{design.alias}}>{{design.dname}}</mat-option>
-      </mat-select>
-    </mat-form-field> -->
     <section style="float: right">
       <div  *ngIf="!this.object.listforUpdate.length" class="example-button-row">
         <button mat-raised-button color="primary" (click)="addTaskData()">Submit</button>
@@ -44,5 +38,4 @@
         <button mat-raised-button color="primary" (click)="updateTaskData()">Update</button>
       </div>
     </section>
-  <!-- </form> -->
 </div>

@@ -166,6 +166,9 @@ removetask(task,list){
      * @param task 
      */
     copytask(task){
+        if(task.taskDiscription.includes('*')){
+            alert('Please check:-'+task.taskDiscription.split('*')[1])
+        }
         let ind = this.copyTaskArray.findIndex(el=>el.id==task.id)
         if(ind<0){
             this.copyTaskArray.push(task)
@@ -188,6 +191,7 @@ removetask(task,list){
             let copyText: any = {}
             // copyText.branch=',        -'+branch
             this.copyTaskArray.forEach((task)=>{
+                task.designType = task.designType.replaceAll(',','-')
                 if(task.branch==branch){
                     if(copyText[branch]){
                         copyText[branch]=copyText[branch]+',        '+'-'+task.taskDiscription+'('+task.designType+')'

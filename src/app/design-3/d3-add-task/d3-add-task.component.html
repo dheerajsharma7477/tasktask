@@ -4,13 +4,7 @@
     <!--                          Copy div                                -->
     <!--                                                                  -->
     <!------------------------------------------------------------------- -->
-<!-- <div>
-    <div class="tasklstbox"> -->
-        <!-- <mat-list style="width: 97%" role="list">
-            <mat-list-item *ngFor="let list of this.copyTaskArray;let i=index" class="tasklst" role="listitem">
-                {{list.taskDiscription}}
-            </mat-list-item> *ngFor="let list of this.copyTaskArray;let i=index"
-        </mat-list> -->
+
           
 <div class="container"  *ngIf="this.copyTaskArray.length" [cdkDragFreeDragPosition]="dragPosition"  cdkDrag >
     <div class="container-inner">
@@ -29,17 +23,12 @@
               </defs>
             </svg>
             <div  class="sticky-content">
-                <!-- <ng-container *ngFor="let list of this.copyTaskArray;let i=index">
-                    <p class="copyp">
-                        ⬤ {{list.taskDiscription}}
-                    </p>
-                </ng-container> -->
                 <ol style="margin: 0px;padding: 7px;">
                     <li *ngFor="let list of this.copyTaskArray;let i=index">{{list.taskDiscription}}</li>
                 </ol>  
                 <div style="position: absolute;bottom: 1px;right: 1px;">
-                    <mat-icon style="margin-left: 5px;cursor: pointer;" (click)="cancleCopy()">highlight_off</mat-icon>
-                    <mat-icon style="margin-left: 5px;;cursor: pointer" (click)="copyText()">file_copy</mat-icon>
+                    <mat-icon class="copycicn" style="margin-left: 5px;cursor: pointer;" (click)="cancleCopy()">highlight_off</mat-icon>
+                    <mat-icon class="copycicn" style="margin-left: 5px;cursor: pointer" (click)="copyText()">file_copy</mat-icon>
                 </div>
             </div>
           </div>
@@ -47,24 +36,6 @@
       </div>
     </div>
   </div>
-    <!-- </div> -->
-    <!-- <div class="taskactin">
-        <div class="example-button-row">
-          <div class="example-flex-container">
-            <div class="example-button-container">
-              <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
-                <mat-icon (click)="cancleCopy()">highlight_off</mat-icon>
-              </button>
-            </div>
-            <div style="margin-left:10px" class="example-button-container">
-              <button mat-mini-fab color="accent" aria-label="Example icon button with a plus one icon">
-                <mat-icon (click)="copyText()">file_copy</mat-icon>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-</div> -->
 <div class="main" cdkDropListGroup>
     <!-- ---------------------------------------------------------------- -->
     <!--                                                                  -->
@@ -73,7 +44,6 @@
     <!------------------------------------------------------------------- -->
     
     <div class="section1">
-        <!-- <button mat-raised-button color="primary" (click)="addTask()" >Add</button> -->
         <div style="display: flex;">
             <h3 style="width: 146px" ><mat-icon matBadge="{{firestorecollectionService.listlength}}" matBadgeOverlap="false" >schedule</mat-icon> In Progress</h3>
             <button style="height: 38px;margin-top: 15px;background: orange;" mat-raised-button color="primary" (click)="reAssignInProgressTask()"><mat-icon> wb_sunny</mat-icon> good morning</button>

@@ -86,7 +86,7 @@ export class D3AddTaskComponent extends AbstractAddTask implements OnInit {
     }
   }
   viewTask(task){
-    return
+    // return
     this.object.viewTask=task
     this.dialog.open(TaskModelComponent,{
       minWidth:'400px'
@@ -102,7 +102,10 @@ export class D3AddTaskComponent extends AbstractAddTask implements OnInit {
         })
 
       }
-      this.object.branchList.unshift({branch:'',status:'active'})
+      let ind = this.object.branchList.findIndex((el)=>el.branch=='')
+      if(ind==-1){
+        this.object.branchList.unshift({branch:'',status:'active'})
+      }
     })
     // this.firestorecollectionService.taskList
   }
@@ -154,7 +157,6 @@ export class D3AddTaskComponent extends AbstractAddTask implements OnInit {
     this.object.date=list.date
     this.object.status=task.status
     this.object.progress=task.progress
-
     this._bottomSheet.open(BottomSheetOverviewExampleSheet);
 }
 
@@ -305,10 +307,17 @@ export class BottomSheetOverviewExampleSheet extends AbstractAddTask{
   }
 
   public desn=[]
-  chooseDesign(event){
-    console.log(event)
-    if(!this.desn.includes(event)){
-      this.desn.push(event)
+  chooseDesign(type,event){
+    if(event){
+      if(!this.desn.includes(type)){
+        this.desn.push(type)
+      }
+    }
+    else{
+      let ind = this.desn.indexOf(type)
+      if(ind!=-1){
+        this.desn.splice(ind,1)
+      }
     }
     this.service.designType=this.desn.join(',')
   }

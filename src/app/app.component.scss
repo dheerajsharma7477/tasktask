@@ -79,6 +79,12 @@ body {
     z-index: 9999;
     position: absolute;
   }
+  @media screen and (max-width: 480px) {
+    .logiboc{
+      width: 70%;
+      margin: 16% 15%;
+    }
+  }
   .head1{
     font-weight: 400;
     margin-left: 2px;

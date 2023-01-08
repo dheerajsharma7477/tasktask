@@ -6,6 +6,26 @@
     padding-bottom: 25px;
     // overflow-y: scroll;
 }
+@media screen and (max-width: 480px) {
+  .main{
+    display: block;
+    overflow-y: scroll;
+  }
+  .section1{
+    width: 100% !important;
+    float: left;
+    margin-top: 28px !important;
+  }
+  ._1TmfNK{
+    display: none;
+  }
+  ._3_C9Hx{
+    font-size: 10px;
+  }
+  ._1cmsER{
+    display: none !important;
+  }
+}
 .section1{
     height: 100%;
     // border-right: 1px solid gray;

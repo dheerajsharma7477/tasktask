@@ -5,8 +5,8 @@ import { OffersComponent } from './window/offers/offers.component';
 
 const routes: Routes = [
   // {
-  //   path: '**',
-  //   loadChildren: () => import('./window/window.module').then(m => m.WindowModule),
+  //   path: '',
+  //   component: OffersComponent,
   // },
   {
     path: 'tasktask',
@@ -17,7 +17,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{ useHash: true })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

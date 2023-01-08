@@ -10,11 +10,11 @@ public searchValue='system errro 001'
 constructor(public object: MasterObjectService,public firestorecollectionService:FirestorecollectionService,public router:Router)
     {
             if(this.object.themeChange.uxDesign=='D1'){
-                console.log("Subcribe db1")
+                // console.log("Subcribe db1")
                 // this.firestorecollectionService.getSomethingFromProject1()
             }
             else{
-                console.log("Subcribe db2")
+                // console.log("Subcribe db2")
                 // this.firestorecollectionService.getSomethingFromProject2()
             }
 

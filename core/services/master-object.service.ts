@@ -30,15 +30,18 @@ export class MasterObjectService {
   public design=[
     {
       dname:'Iceexchange',
-      alias:''
+      alias:'',
+      show:true
     },
     {
       dname:'Iceexchange',
-      alias:'D1'
+      alias:'D1',
+      show:true
     },
     {
       dname:'IceCric',
-      alias:'D2'
+      alias:'D2',
+      show:true
     },
     {
       dname:'World777',
@@ -46,29 +49,66 @@ export class MasterObjectService {
     },
     {
       dname:'Sky',
-      alias:'D4'
+      alias:'D4',
+      show:true
     },
     {
       dname:'Diamond',
-      alias:'D5'
+      alias:'D5',
+      show:true
     },
     {
       dname:'Lotus',
-      alias:'D6'
+      alias:'D6',
+      show:true
     },
     {
       dname:'All',
-      alias:'All'
+      alias:'All',
+      show:true
     },
     {
       dname:'PLAYER',
-      alias:'PLAYER'
+      alias:'PLAYER',
+      show:true
     },
     {
       dname:'ADMIN',
-      alias:'ADMIN'
+      alias:'ADMIN',
+      show:true
+    },
+    {
+      dname:'THE100',
+      alias:'THE100',
+      show:true
+    },
+    {
+      dname:'A2Z',
+      alias:'A2Z',
+      show:true
+    },
+    {
+      dname:'WHITELABEL',
+      alias:'WHITELABEL',
+      show:true
+    },
+    {
+      dname:'DNS',
+      alias:'DNS',
+      show:false
+    },
+    {
+      dname:'ICON',
+      alias:'ICON',
+      show:false
+    },
+    {
+      dname:'ENUM',
+      alias:'ENUM',
+      show:false
     }
   ]
+  // public desn=[]
   public userInfo:any
   /**
    * @description 

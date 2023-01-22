@@ -1,3 +1,4 @@
+<!-- ng build --c=tasktask --prod --aot --output-path docs -->
 <div class="bottom-main">
   <div>
     <h1>Add Task</h1>
@@ -8,7 +9,7 @@
     </mat-form-field>
     <mat-form-field class="example-full-width">
       <mat-label>Branch</mat-label>
-      <input [(ngModel)]="this.service.branch" matInput placeholder="Branch nmae" [matAutocomplete]="auto" value="">
+      <input [(ngModel)]="this.service.branch" matInput placeholder="Branch name" [matAutocomplete]="auto" value="">
       <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
         <ng-container *ngFor="let list of filteredOptions | async;let i=index">
           <mat-option *ngIf="i!=0" [value]="list.branch">
@@ -22,11 +23,11 @@
       <input type="number" [(ngModel)]="this.service.progress" matInput placeholder="progress" value="">
     </mat-form-field>
 
-    <mat-label>Choose an Design</mat-label>
+    <mat-label>Choose Type</mat-label>
     <section  class="example-section">
       <div style="width: 600px;">
         <ng-container *ngFor="let design of this.service.design;let i=index">
-          <mat-checkbox *ngIf="i!=0" style="margin: 25px;"  [checked]="this.service.designType.includes(design.alias)" (change)="chooseDesign(design.alias,$event.checked)"  class="example-margin">{{design.alias}}</mat-checkbox>
+          <mat-checkbox *ngIf="i!=0 && design.show" style="margin: 25px;"  [checked]="this.service.designType.includes(design.alias)" (change)="chooseDesign(design.alias,$event.checked)"  class="example-margin">{{design.alias}}</mat-checkbox>
         </ng-container>
       </div>
     </section>

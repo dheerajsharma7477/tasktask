@@ -51,7 +51,8 @@ import { Constants } from 'core/utils/pipe/constant';
     BrowserAnimationsModule,
     MatInputModule,
     MatIconModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    
   ],
   providers: [
     {

@@ -9,6 +9,7 @@ import { FormControl } from '@angular/forms';
 import {map, startWith} from 'rxjs/operators';
 import { TaskModelComponent } from 'src/app/layout/model/task-model/task-model.component';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { NotesComponent } from 'src/app/layout/model/task-model/notes/notes.component';
 @Component({
   selector: 'app-d3-add-task',
   templateUrl: './d3-add-task.component.html',
@@ -92,6 +93,11 @@ export class D3AddTaskComponent extends AbstractAddTask implements OnInit {
       minWidth:'400px'
     });
   }
+  viewNotes(){
+    this.dialog.open(NotesComponent,{
+      minWidth:'400px'
+    });
+  }
   getBranchs(){
     this.firestorecollectionService.getBranch().doc(this.object.userInfo.name).valueChanges().subscribe((res:any)=>{
       if(res){
@@ -158,7 +164,26 @@ export class D3AddTaskComponent extends AbstractAddTask implements OnInit {
     this.object.status=task.status
     this.object.progress=task.progress
     this._bottomSheet.open(BottomSheetOverviewExampleSheet);
+    this.showWhitelableAsset(task.designType.includes('WHITELABEL'))
+      
 }
+
+showWhitelableAsset(event){
+    if(event){
+      this.service.design.forEach(el=>{
+        if(el.alias=='DNS' || el.alias=='ICON' || el.alias=='ENUM'){
+          el.show=true
+        }
+      })
+    }
+    else{
+      this.service.design.forEach(el=>{
+        if(el.alias=='DNS' || el.alias=='ICON' || el.alias=='ENUM'){
+          el.show=false
+        }
+      })
+    }
+  }
 
 /**
  * function for check previous in progress task ask to add for today
@@ -224,7 +249,34 @@ handleRemoveTask(task,list): void {
 
 
 /**
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
  * class for open model for add task
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
  */
 @Component({
   selector: 'bottom-sheet-overview-example-sheet',
@@ -240,6 +292,7 @@ export class BottomSheetOverviewExampleSheet extends AbstractAddTask{
       startWith(''),
       map(value => this._filter(value || '')),
     );
+    this.desn= this.service.designType.split(',')
   }
   
   openLink(event: MouseEvent): void {
@@ -306,7 +359,7 @@ export class BottomSheetOverviewExampleSheet extends AbstractAddTask{
     }, 200);
   }
 
-  public desn=[]
+  // public desn=[]
   chooseDesign(type,event){
     if(event){
       if(!this.desn.includes(type)){
@@ -319,6 +372,22 @@ export class BottomSheetOverviewExampleSheet extends AbstractAddTask{
         this.desn.splice(ind,1)
       }
     }
+
+    if(this.desn.includes('WHITELABEL')){
+      this.service.design.forEach(el=>{
+        if(el.alias=='DNS' || el.alias=='ICON' || el.alias=='ENUM'){
+          el.show=true
+        }
+      })
+    }
+    else{
+      this.service.design.forEach(el=>{
+        if(el.alias=='DNS' || el.alias=='ICON' || el.alias=='ENUM'){
+          el.show=false
+        }
+      })
+    }
+
     this.service.designType=this.desn.join(',')
   }
     /**
@@ -334,7 +403,35 @@ export class BottomSheetOverviewExampleSheet extends AbstractAddTask{
 
 
 /**
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
  * class for open confirm model
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
  */
 @Component({
   selector: 'dialog-overview-example-dialog',

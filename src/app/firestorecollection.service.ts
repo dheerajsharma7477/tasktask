@@ -156,8 +156,11 @@ export class FirestorecollectionService {
   }
   public getBranch(){
     return this.firebaseProject2.collection('branch')
-   }
+  }
   public getLoginAuth(){
    return this.firebaseProject2.collection('loginAuth')
   }
+  public getNotes(){
+    return this.firebaseProject2.collection('notes')
+   }
 }

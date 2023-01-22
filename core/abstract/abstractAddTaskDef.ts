@@ -12,17 +12,19 @@ export class AbstractAddTaskDef{
     public dragList:any
     public dragListdata:any
     public isdragStart:boolean
+    public desn=[]
+
     public menuList=[
         {
             name:'Copy',
             param:'copyTask',
             color:'fff',
             icon:'file_copy',
-            show:"QA,WILLGOPROD,prod"
+            show:"IP,QA,WILLGOPROD,prod"
         },
         {
             name:'In progress',
-            param:'In progress',
+            param:'inProgress',
             color:'fff',
             icon:'schedule',
             show:"QA,WILLGOPROD,prod"

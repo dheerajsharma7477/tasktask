@@ -23,6 +23,9 @@
               </defs>
             </svg>
             <div  class="sticky-content">
+                <div style="position: absolute;right: 1px;cursor: grabbing;" class="example-handle" cdkDragHandle>
+                    <svg width="24px" fill="currentColor" viewBox="0 0 24 24"><path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg>
+                </div>
                 <ol style="margin: 0px;padding: 7px;">
                     <li *ngFor="let list of this.copyTaskArray;let i=index">{{list.taskDiscription}}</li>
                 </ol>  
@@ -45,8 +48,8 @@
     
     <div class="section1">
         <div style="display: flex;">
-            <h3 style="width: 146px" ><mat-icon matBadge="{{firestorecollectionService.listlength}}" matBadgeOverlap="false" >schedule</mat-icon> In Progress</h3>
-            <button style="height: 38px;margin-top: 15px;background: orange;" mat-raised-button color="primary" (click)="reAssignInProgressTask()"><mat-icon> wb_sunny</mat-icon> good morning</button>
+            <h3 style="width: 170px" ><mat-icon matBadge="{{firestorecollectionService.listlength}}" matBadgeOverlap="false" >schedule</mat-icon> In Progress <mat-icon style="color: orange;cursor: pointer;" (click)="viewNotes()">note_add  </mat-icon></h3>
+            <!-- <button style="height: 38px;margin-top: 15px;background: orange;" mat-raised-button color="primary" (click)="reAssignInProgressTask()"><mat-icon> wb_sunny</mat-icon> good morning</button> -->
         </div>
         <mat-list role="list">
             <mat-list-item  role="listitem">
@@ -77,11 +80,14 @@
                 <ng-container *ngFor="let list of listdata?.task | searchPipe : { taskDiscription: searchModel,branch: searchModel,designType: searchModel};let ind=index" >
                         <div >
                             <ng-container *ngIf="list.name==this.object.userInfo.name">
-                                <mat-list-item cdkDrag (cdkDragStarted)="dragMoved(list,listdata)" *ngIf="list.status==selectedStatus || selectedStatus=='ALL'" [ngClass]="isBranchSearch ? (searchModel==list.branch ? list?.status+' d-block':'d-none') : list?.status" role="listitem">
+                                <mat-list-item cdkDrag (cdkDragStarted)="dragMoved(list,listdata)" *ngIf="list.status==selectedStatus || selectedStatus=='ALL'" [ngClass]="isBranchSearch ? (searchModel==list.branch ? list?.status+' d-block':'d-none') : list.designType.includes('WHITELABEL') ? 'WHITELABEL' : list?.status" role="listitem">
                                     <div class="distext">
                                         <div (click)="viewTask(list)" class="dnametxt">
                                             <span class="taskdis">
-                                                <mat-icon class="fnsiz">check_circle</mat-icon> {{list.taskDiscription}}
+                                                <mat-icon class="fnsiz">check_circle</mat-icon> {{list.taskDiscription}} 
+                                                <mat-icon style="color: orange;font-size: 20px;" *ngIf="list.designType.includes('DNS')" class="fnsiz">dns</mat-icon>
+                                                <mat-icon style="color: green;font-size: 20px;" *ngIf="list.designType.includes('ICON')" class="fnsiz">sentiment_very_satisfied</mat-icon>
+                                                <mat-icon style="color: blue;font-size: 20px;" *ngIf="list.designType.includes('ENUM')" class="fnsiz">playlist_add</mat-icon>
                                             </span> <br>
                                             <span  class="datetip">
                                                 <mat-icon class="fnsiz">timeline</mat-icon>  {{list.branch}}

@@ -246,7 +246,7 @@ removetask(task,list){
      * @param text 
      */
     copytodayTask(text){
-        text.task=text.task.filter(el=>el.name==this.object.userInfo.name)
+        text.task=text.task.filter(el=>el.name==this.object.userInfo.name || this.object.userInfo.role=='QA')
         let cp=[]
         text.task.forEach(el=>{cp.push('-'+el.taskDiscription+' ('+el.branch+')')})
         text=JSON.stringify(cp)

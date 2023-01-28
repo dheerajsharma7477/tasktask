@@ -42,7 +42,7 @@ export class D3AddTaskComponent extends AbstractAddTask implements OnInit {
     this.object.getDOMInstance().scrollToTop()
     // this.filtertoInprogress()
     this.getBranchs()
-
+    this.getAllUsersList()
 
     
   }
@@ -321,7 +321,7 @@ export class BottomSheetOverviewExampleSheet extends AbstractAddTask{
       "status" : 'inProgress',
       "date":new Date().toDateString(),
       "progress":'1',
-      "name":this.object.userInfo.name
+      "name":this.service.assignName ? this.service.assignName : this.object.userInfo.name
 
     }
     this.addtaskData(taskData,new Date().toDateString())

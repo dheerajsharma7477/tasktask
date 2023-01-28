@@ -122,6 +122,22 @@ updateStatusForSameTask(taskid,status){
     });
 }
 
+/**
+ * for update name
+ * @param taskid 
+ * @param name 
+ */
+assignTaskToUser(taskid,name){
+    this.firestorecollectionService.taskListFromFireBase.forEach(el => {
+        el.task.forEach(el2=>{
+            if(el2.id==taskid){
+                el2.name=name
+                this.updateTaskdata(el.task,el.date)
+            }
+        })
+    });
+}
+
 
 
 /**
@@ -145,6 +161,8 @@ copytoToday(task){
       }
       this.addtaskData(taskData,new Date().toDateString())
 }
+
+
 
 /**
  * function for remove task 
@@ -306,4 +324,13 @@ removetask(task,list){
                 }
             })
     }
+
+    getAllUsersList(){
+        this.firestorecollectionService.getLoginAuth().doc('users').valueChanges().subscribe((res:any)=>{
+          if(res){
+            this.object.users=[]
+            this.object.users=res.name
+          }
+        })
+      }
 }

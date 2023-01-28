@@ -18,6 +18,13 @@
         </ng-container>
       </mat-autocomplete>
     </mat-form-field>
+    <mat-form-field  *ngIf="this.object.userInfo.role=='QA'" appearance="fill">
+      <mat-label>Assign</mat-label>
+      <mat-select [(value)]="this.service.assignName">
+        <mat-option></mat-option>
+        <mat-option [value]="list" *ngFor="let list of this.object.users">{{list}}</mat-option>
+      </mat-select>
+    </mat-form-field>
     <mat-form-field class="example-full-width">
       <mat-label>progress in %</mat-label>
       <input type="number" [(ngModel)]="this.service.progress" matInput placeholder="progress" value="">

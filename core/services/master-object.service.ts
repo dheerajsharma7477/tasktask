@@ -24,9 +24,11 @@ export class MasterObjectService {
   public status=""
   public progress=1
   public username=""
-
+  public assignName=''
   public userName='Dheeraj'
   public branchList=[]
+  public users=[]
+
   public design=[
     {
       dname:'Iceexchange',

@@ -76,10 +76,10 @@
                     <h5 class="vert-move" style="text-align: center;"><mat-icon>cloud_upload</mat-icon></h5>
                 </mat-list-item>
                 <ng-container *ngFor="let listdata of this.firestorecollectionService.taskList;let i=index"  >
-                <h5 *ngIf="listdata?.isTaskExist">{{listdata?.date}}<mat-icon (click)="copytodayTask(listdata)" class="copttody" >file_copy</mat-icon></h5>
-                <ng-container *ngFor="let list of listdata?.task | searchPipe : { taskDiscription: searchModel,branch: searchModel,designType: searchModel};let ind=index" >
+                <h5 *ngIf="listdata?.isTaskExist || this.object.userInfo.role=='QA'">{{listdata?.date}}<mat-icon (click)="copytodayTask(listdata)" class="copttody" >file_copy</mat-icon></h5>
+                <ng-container *ngFor="let list of listdata?.task | searchPipe : { taskDiscription: searchModel,branch: searchModel,designType: searchModel,name: searchModel};let ind=index" >
                         <div >
-                            <ng-container *ngIf="list.name==this.object.userInfo.name">
+                            <ng-container *ngIf="list.name==this.object.userInfo.name || this.object.userInfo.role=='QA'">
                                 <mat-list-item cdkDrag (cdkDragStarted)="dragMoved(list,listdata)" *ngIf="list.status==selectedStatus || selectedStatus=='ALL'" [ngClass]="isBranchSearch ? (searchModel==list.branch ? list?.status+' d-block':'d-none') : list.designType.includes('WHITELABEL') ? 'WHITELABEL' : list?.status" role="listitem">
                                     <div class="distext">
                                         <div (click)="viewTask(list)" class="dnametxt">
@@ -93,7 +93,7 @@
                                                 <mat-icon class="fnsiz">timeline</mat-icon>  {{list.branch}}
                                             </span>
                                         </div>
-                                        <div>
+                                        <div style="display: flex;">
                                             <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                                                 <mat-icon>more_vert</mat-icon>
                                             </button>
@@ -103,7 +103,14 @@
                                                         <mat-icon>{{menu?.icon}}</mat-icon>
                                                         <span>{{menu?.name}}</span>
                                                     </button>
+                                                    
                                                 </ng-container>
+                                            </mat-menu>
+                                            <button [matTooltip]="list.name" class="assignbtn" *ngIf="this.object.userInfo.role=='QA'" mat-icon-button [matMenuTriggerFor]="assign" aria-label="ass">
+                                                {{(list.name.substr(0, 2) | uppercase)}}
+                                            </button>
+                                            <mat-menu #assign="matMenu">
+                                                <button *ngFor="let user of this.object.users" (click)="assignTaskToUser(list.id,user)" mat-menu-item>{{user}}</button>
                                             </mat-menu>
                                         </div>
                                     </div>
@@ -163,10 +170,10 @@
                 </mat-list-item>
                 
                 <ng-container *ngFor="let listdata of this.firestorecollectionService.QA"  >
-                    <h5 *ngIf="listdata?.isTaskExist">{{listdata?.date}}</h5>
-                    <ng-container *ngFor="let list of listdata?.task | searchPipe : { taskDiscription: searchModel,branch: searchModel,designType: searchModel};let ind=index">
+                    <h5 *ngIf="listdata?.isTaskExist || this.object.userInfo.role=='QA'">{{listdata?.date}}</h5>
+                    <ng-container *ngFor="let list of listdata?.task | searchPipe : { taskDiscription: searchModel,branch: searchModel,designType: searchModel,name: searchModel};let ind=index">
                         <div>
-                            <ng-container *ngIf="list.name==this.object.userInfo.name">
+                            <ng-container *ngIf="list.name==this.object.userInfo.name  || this.object.userInfo.role=='QA' ">
                                 <mat-list-item cdkDrag (cdkDragStarted)="dragMoved(list,listdata)" [ngClass]="isBranchSearch ? (searchModel==list.branch ? list?.status+' d-block':'d-none') : list?.status" role="listitem">
                                     <div class="distext">
                                         <div  (click)="viewTask(list)" class="dnametxt">
@@ -177,7 +184,7 @@
                                                 <mat-icon class="fnsiz">timeline</mat-icon>  {{list.branch}}
                                             </span>
                                         </div>
-                                        <div>
+                                        <div style="display: flex;">
                                             
                                             <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                                                 <mat-icon>more_vert</mat-icon>
@@ -190,6 +197,9 @@
                                                     </button>
                                                 </ng-container>
                                             </mat-menu>
+                                            <button [matTooltip]="list.name" class="assignbtn" *ngIf="this.object.userInfo.role=='QA'" mat-icon-button  aria-label="ass">
+                                                {{(list.name.substr(0, 2) | uppercase)}}
+                                            </button>
                                         </div>
                                     </div>
                                 </mat-list-item>
@@ -241,6 +251,7 @@
                                 </button> -->
                             </ng-container>
                         </mat-menu>
+                    
                     </div>
                 </div>
             </mat-list-item>
@@ -251,9 +262,9 @@
                     <h5 class="vert-move" style="text-align: center;"><mat-icon>cloud_upload</mat-icon></h5>
                 </mat-list-item>
                 <ng-container *ngFor="let listdata of this.firestorecollectionService.willgoProd"  >
-                    <h5 *ngIf="listdata?.isTaskExist">{{listdata?.date}}</h5>
-                    <ng-container *ngFor="let list of listdata?.task | searchPipe : { taskDiscription: searchModel,branch: searchModel,designType: searchModel};let ind=index">
-                        <ng-container *ngIf="list.name==this.object.userInfo.name">
+                    <h5 *ngIf="listdata?.isTaskExist || this.object.userInfo.role=='QA'">{{listdata?.date}}</h5>
+                    <ng-container *ngFor="let list of listdata?.task | searchPipe : { taskDiscription: searchModel,branch: searchModel,designType: searchModel,name: searchModel};let ind=index">
+                        <ng-container *ngIf="list.name==this.object.userInfo.name  || this.object.userInfo.role=='QA'">
                             <mat-list-item  cdkDrag (cdkDragStarted)="dragMoved(list,listdata)"  [ngClass]="isBranchSearch ? (searchModel==list.branch ? list?.status+' d-block':'d-none') : list?.status" role="listitem">
                                 <div class="distext">
                                     <div  (click)="viewTask(list)" class="dnametxt">
@@ -264,7 +275,7 @@
                                             <mat-icon class="fnsiz">timeline</mat-icon> {{list.branch}}
                                         </span>
                                     </div>
-                                    <div>
+                                    <div style="display: flex;">
                                         <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                                             <mat-icon>more_vert</mat-icon>
                                           </button>
@@ -276,6 +287,9 @@
                                                 </button>
                                             </ng-container>
                                           </mat-menu>
+                                          <button [matTooltip]="list.name" class="assignbtn" *ngIf="this.object.userInfo.role=='QA'" mat-icon-button  aria-label="ass">
+                                            {{(list.name.substr(0, 2) | uppercase)}}
+                                        </button>
                                     </div>
                                 </div>
                             </mat-list-item>
@@ -317,9 +331,9 @@
                     <h5 class="vert-move" style="text-align: center;"><mat-icon>cloud_upload</mat-icon></h5>
                 </mat-list-item>
                 <ng-container *ngFor="let listdata of this.firestorecollectionService.prod"  >
-                    <h5 *ngIf="listdata?.isTaskExist">{{listdata?.date}}</h5>
-                    <ng-container *ngFor="let list of listdata?.task | searchPipe : { taskDiscription: searchModel,branch: searchModel,designType: searchModel};let ind=index">
-                        <ng-container *ngIf="list.name==this.object.userInfo.name">
+                    <h5 *ngIf="listdata?.isTaskExist || this.object.userInfo.role=='QA'">{{listdata?.date}}</h5>
+                    <ng-container *ngFor="let list of listdata?.task | searchPipe : { taskDiscription: searchModel,branch: searchModel,designType: searchModel,name: searchModel};let ind=index">
+                        <ng-container *ngIf="list.name==this.object.userInfo.name || this.object.userInfo.role=='QA'">
 
                             <mat-list-item  cdkDrag (cdkDragStarted)="dragMoved(list,listdata)"  [ngClass]="isBranchSearch ? (searchModel==list.branch ? list?.status+' d-block':'d-none') : list?.status" role="listitem">
                                 <div class="distext">
@@ -331,7 +345,7 @@
                                             <mat-icon class="fnsiz">timeline</mat-icon> {{list.branch}}
                                         </span>
                                     </div>
-                                    <div>
+                                    <div style="display: flex;">
                                         <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                                             <mat-icon>more_vert</mat-icon>
                                           </button>
@@ -343,6 +357,9 @@
                                                 </button>
                                             </ng-container>
                                           </mat-menu>
+                                          <button [matTooltip]="list.name" class="assignbtn" *ngIf="this.object.userInfo.role=='QA'" mat-icon-button  aria-label="ass">
+                                            {{(list.name.substr(0, 2) | uppercase)}}
+                                        </button>
                                     </div>
                                 </div>
                             </mat-list-item>

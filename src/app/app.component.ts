@@ -90,7 +90,7 @@ export class AppComponent implements OnInit {
     if(this.object.getUtilInstance().getStore('loginAuth')){
       this.router.navigate(['tasktask'])
     }
-    console.log('Build.VERSION.v1.0')
+    console.log('Build.VERSION.v2.0')
   }
 
   submit(num){

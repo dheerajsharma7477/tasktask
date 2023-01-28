@@ -23,11 +23,18 @@ export class AbstractAddTaskDef{
             show:"IP,QA,WILLGOPROD,prod"
         },
         {
+            name:'Assign To',
+            param:'assign',
+            color:'fff',
+            icon:'assignment_ind',
+            show:"IP,QA,WILLGOPROD,prod"
+        },
+        {
             name:'In progress',
             param:'inProgress',
             color:'fff',
             icon:'schedule',
-            show:"QA,WILLGOPROD,prod"
+            show:"IP,QA,WILLGOPROD,prod"
         },
         {
             name:'On QA',

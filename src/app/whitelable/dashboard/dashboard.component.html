@@ -1,0 +1,110 @@
+<div class="main-top">
+    <div class="filterdiv">
+        <div>
+            <mat-form-field>
+              <mat-label>Design</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let dn of domainDesign" [value]="dn.design" (click)="filterDomain(dn)">
+                  {{dn.design}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Primary</mat-label>
+                <mat-select>
+                  <mat-option [style.background]="dn?.primaryColor" *ngFor="let dn of this.domainprimaryColor" [value]="dn.primaryColor" (click)="getprimaryColor(dn)">
+                    <!-- {{dn?.primaryColor}} -->
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Secondry</mat-label>
+                <mat-select>
+                  <mat-option [style.background]="dn?.secondryColor" *ngFor="let dn of this.domainSecondryColor" [value]="dn.secondryColor" (click)="getsecondryColor(dn)">
+                    <!-- {{dn?.primaryColor}} -->
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="layoutdiv">
+        <div class="centerdiv">
+            <div *ngIf="uxDesign=='D1'" [style.background]="themeBackground" class="d1">
+                <div class="header1">
+                    <div class="loginbtns">
+                        <div class="loginbtns">
+                            <div class="loginbtnsdn" [ngStyle]="{'color':themeTextColor ? themeTextColor :'red'}" >LOGO</div>
+                        </div>
+                    </div>
+                    <div class="loginbtns">
+                        <div class="loginbtns">
+                            <div  class="loginbtnsdn">
+                                <div class="losdsd" [style.border]="themeBorder">LOGIN</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div  [style.border]="themeBorder" class="header12">
+                    <ul class="ullist">
+                        <li class="ullisttype" [style.color]="'white'" *ngFor="let type of gameType" >{{type}}</li>
+                    </ul>
+                </div>
+                <div class="centerbanner">
+                    <img style="width: 100%;" src="assets/banner.jpg" alt="">
+                </div>
+                <div  class="centerbannerinnr">
+                    <div [style.border]="themeBorder" class="sportimg">  <img style="width: 100%;" src="assets/Sport-banner.png" alt=""></div>
+                    <div [style.border]="themeBorder" class="sportimg"> <img style="width: 100%;" src="assets/virtualsports-banner.png" alt=""> </div>
+                </div>
+            </div>
+            <div *ngIf="uxDesign=='D2'" style="padding-top: 1px"  class="d1">
+                
+                <div [style.background]="themeBackground" style="padding-top: 1px;" class="header12">
+                    <ul class="ullist">
+                        <li class="ullisttyped2 cursive" style="width: 80px;margin: 0px;" [ngStyle]="{'color':sc }" >{{selectedDomain}}</li>
+                        <li class="ullisttyped2" style="width: auto;" [style.color]="'white'" *ngFor="let type of gameType" >{{type}}</li>
+                        <li class="ullisttyped2" style="margin-top: -10px;margin-left: 8%;" [style.color]="'white'" ><div  class="d2signbt" >LOGIN</div></li>
+                        <li class="ullisttyped2"  style="margin-top: -10px;margin-left: 3%;"  [style.color]="'white'" ><div  class="d2signbt2" [ngStyle]="{'background-color':sc }" >SIGNUP</div></li>
+                    </ul>
+                </div>
+                <div class="centerbanner2">
+                    <img style="width: 100%;" src="assets/banner.jpg" alt="">
+                </div>
+                <div  class="centerbanner2">
+                    <div >  <img style="width: 100%;" src="assets/d2trend.png" alt=""></div>
+                </div>
+            </div>
+            <div *ngIf="uxDesign=='D4'" [style.background]="themeBackground" class="d1">
+                <div class="header1">
+                    <div class="loginbtns">
+                        <div class="loginbtns">
+                            <div class="loginbtnsdnd4" [ngStyle]="{'color':themeTextColor ? themeTextColor :'red'}" ><input style="border-radius: 5px;" type="text" placeholder="search by event name..."></div>
+                        </div>
+                    </div>
+                    <div class="loginbtns">
+                        <div class="loginbtns">
+                            <div  class="loginbtnsdnd4">
+                                <div class="losdsdd4login" ><input style="border-radius: 5px;height: 20px;" type="text" placeholder="username"><input style="border-radius: 5px;height: 20px;" type="text" placeholder="password"><button class="d4logindstn">login</button> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div  [style.background]="sc" class="header42">
+                    <ul class="ullistd4">
+                        <li [ngClass]="type=='Home' || sc=='#000' ? 'whitecolre':''" class="ullisttyped4" *ngFor="let type of gameTyped4" >{{type}}</li>
+                    </ul>
+                </div>
+                <div class="centerdivd4">
+                    <img style="width: 100%;" src="assets/d4inplay.png" alt="">
+                </div>
+                <div class="centerbanner">
+                    <img style="width: 100%;" src="assets/banner.jpg" alt="">
+                </div>
+                <div  class="centerbannerinnr">
+                    <!-- <div [style.border]="themeBorder" class="sportimg">  <img style="width: 100%;" src="assets/Sport-banner.png" alt=""></div>
+                    <div [style.border]="themeBorder" class="sportimg"> <img style="width: 100%;" src="assets/virtualsports-banner.png" alt=""> </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

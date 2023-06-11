@@ -14,6 +14,12 @@ const routes: Routes = [
     // data: { preload: true, delay: false },
     // canActivate: [AbstractGuard],
   },
+  {
+    path: 'whitelable',
+    loadChildren: () => import('./whitelable/whitelable.module').then(m => m.WhitelableModule),
+    // data: { preload: true, delay: false },
+    // canActivate: [AbstractGuard],
+  },
 ];
 
 @NgModule({

@@ -31,7 +31,7 @@ constructor(public object: MasterObjectService,public firestorecollectionService
   filterDesign(){
     let m=new Map();
     let tempArray=[];
-            tempArray.push({provider: "All"})
+            // tempArray.push({provider: "All"})
             this.domains.forEach(el => {
                 if(!m.has(el.design)){
                     m.set(el.design,true)
@@ -43,7 +43,6 @@ constructor(public object: MasterObjectService,public firestorecollectionService
   filterPrimaryColor(){
     let m=new Map();
     let tempArray=[];
-            tempArray.push({provider: "All"})
             this.filterDomains.forEach(el => {
                 if(!m.has(el.primaryColor)){
                     m.set(el.primaryColor,true)
@@ -55,7 +54,6 @@ constructor(public object: MasterObjectService,public firestorecollectionService
   filterSecondryColor(){
     let m=new Map();
     let tempArray=[];
-            tempArray.push({provider: "All"})
             this.filterDomains.forEach(el => {
                 if(!m.has(el.secondryColor)){
                     m.set(el.secondryColor,true)

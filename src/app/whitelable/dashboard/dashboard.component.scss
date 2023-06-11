@@ -4,7 +4,7 @@
 }
 .filterdiv{
     margin-top: 4%;
-    height: 100px;
+    height: 151px;
     border-bottom: 1px solid gray;
     padding: 10px;
 }
@@ -168,4 +168,28 @@
 }
 .cursive{
     font-family: "Stencil Std", fantasy;
+}
+.chipul{
+    display: flex;
+    list-style-type: none;
+}
+.pcchip{
+    width: 105px;
+    height: 34px;
+    margin-left: 6px;
+    border-radius: 25px;
+    cursor: pointer;
+    // text-align: center;
+    // border: 1px solid gray;
+    // line-height: 34px;
+}
+.designli{
+    width: 105px;
+    height: 34px;
+    margin-left: 6px;
+    border-radius: 25px;
+    cursor: pointer;
+    text-align: center;
+    border: 1px solid gray;
+    line-height: 34px;
 }

@@ -1,30 +1,41 @@
 <div class="main-top">
     <div class="filterdiv">
         <div>
-            <mat-form-field>
+            <!-- <mat-form-field>
               <mat-label>Design</mat-label>
               <mat-select>
                 <mat-option *ngFor="let dn of domainDesign" [value]="dn.design" (click)="filterDomain(dn)">
                   {{dn.design}}
                 </mat-option>
               </mat-select>
-            </mat-form-field>
-            <mat-form-field>
+            </mat-form-field> -->
+            <ul class="chipul">
+                <li class="designli" (click)="filterDomain(dn)" *ngFor="let dn of domainDesign">{{dn.design}}</li>
+            </ul>
+            <!-- <mat-form-field>
                 <mat-label>Primary</mat-label>
                 <mat-select>
                   <mat-option [style.background]="dn?.primaryColor" *ngFor="let dn of this.domainprimaryColor" [value]="dn.primaryColor" (click)="getprimaryColor(dn)">
-                    <!-- {{dn?.primaryColor}} -->
                   </mat-option>
                 </mat-select>
-            </mat-form-field>
-            <mat-form-field>
+            </mat-form-field> -->
+            <ul class="chipul">
+                <li class="pcchip" (click)="getprimaryColor(dn)" [style.background]="dn?.primaryColor" *ngFor="let dn of this.domainprimaryColor">
+                    <!-- {{dn.primaryColor}} -->
+                </li>
+            </ul>
+            <!-- <mat-form-field>
                 <mat-label>Secondry</mat-label>
                 <mat-select>
                   <mat-option [style.background]="dn?.secondryColor" *ngFor="let dn of this.domainSecondryColor" [value]="dn.secondryColor" (click)="getsecondryColor(dn)">
-                    <!-- {{dn?.primaryColor}} -->
                   </mat-option>
                 </mat-select>
-            </mat-form-field>
+            </mat-form-field> -->
+            <ul class="chipul">
+                <li class="pcchip" (click)="getsecondryColor(dn)" [style.background]="dn?.secondryColor" *ngFor="let dn of this.domainSecondryColor">
+                    <!-- {{dn.secondryColor}} -->
+                </li>
+            </ul>
         </div>
     </div>
     <div class="layoutdiv">
